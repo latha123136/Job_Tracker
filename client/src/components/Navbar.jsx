@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Notifications from './Notifications';
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
@@ -163,6 +164,66 @@ const Navbar = () => {
                     📋 Applications
                   </Link>
                   <Link 
+                    to="/recommendations" 
+                    style={linkStyle('/recommendations')}
+                    onMouseEnter={(e) => {
+                      if (location.pathname !== '/recommendations') {
+                        e.target.style.background = 'rgba(102, 126, 234, 0.1)';
+                        e.target.style.color = '#667eea';
+                        e.target.style.transform = 'translateY(-1px)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (location.pathname !== '/recommendations') {
+                        e.target.style.background = 'transparent';
+                        e.target.style.color = '#64748b';
+                        e.target.style.transform = 'translateY(0)';
+                      }
+                    }}
+                  >
+                    🎯 Recommendations
+                  </Link>
+                  <Link 
+                    to="/analytics" 
+                    style={linkStyle('/analytics')}
+                    onMouseEnter={(e) => {
+                      if (location.pathname !== '/analytics') {
+                        e.target.style.background = 'rgba(102, 126, 234, 0.1)';
+                        e.target.style.color = '#667eea';
+                        e.target.style.transform = 'translateY(-1px)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (location.pathname !== '/analytics') {
+                        e.target.style.background = 'transparent';
+                        e.target.style.color = '#64748b';
+                        e.target.style.transform = 'translateY(0)';
+                      }
+                    }}
+                  >
+                    📈 Analytics
+                  </Link>
+                  <Link 
+                    to="/messages" 
+                    style={linkStyle('/messages')}
+                    onMouseEnter={(e) => {
+                      if (location.pathname !== '/messages') {
+                        e.target.style.background = 'rgba(102, 126, 234, 0.1)';
+                        e.target.style.color = '#667eea';
+                        e.target.style.transform = 'translateY(-1px)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (location.pathname !== '/messages') {
+                        e.target.style.background = 'transparent';
+                        e.target.style.color = '#64748b';
+                        e.target.style.transform = 'translateY(0)';
+                      }
+                    }}
+                  >
+                    💬 Messages
+                  </Link>
+                  <Link 
                     to="/goals" 
                     style={linkStyle('/goals')}
                     onMouseEnter={(e) => {
@@ -237,6 +298,7 @@ const Navbar = () => {
         <div style={userSectionStyle}>
           {user ? (
             <>
+              <Notifications />
               {user.role !== 'recruiter' && (
                 <Link 
                   to="/profile" 

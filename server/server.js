@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const { Server } = require('socket.io');
 const connectDB = require('./config/db');
 const jobScheduler = require('./services/jobScheduler');
+const { initializeSchedulers } = require('./services/reminderScheduler');
 
 // Load environment variables
 dotenv.config();
@@ -78,6 +79,10 @@ app.use('/api/interviews', require('./routes/interviewRoutes'));
 app.use('/api/coding-logs', require('./routes/codingLogRoutes'));
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/dashboard', require('./routes/dashboardRoutes'));
+app.use('/api/notifications', require('./routes/notificationRoutes'));
+app.use('/api/analytics', require('./routes/analyticsRoutes'));
+app.use('/api/recommendations', require('./routes/recommendationRoutes'));
+app.use('/api/messages', require('./routes/messageRoutes'));
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
@@ -116,4 +121,9 @@ server.listen(PORT, () => {
   console.log(`✅ API URL: http://localhost:${PORT}`);
   console.log(`✅ Health Check: http://localhost:${PORT}/api/status`);
   console.log('✅ ========================================');
+  
+  // Initialize schedulers after server starts
+  if (process.env.ENABLE_SCHEDULERS !== 'false') {
+    initializeSchedulers();
+  }
 });
