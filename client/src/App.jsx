@@ -18,6 +18,9 @@ import AdminPage from './pages/AdminPage';
 import ApplicationsBoardPage from './pages/ApplicationsBoardPage';
 import GoalsPage from './pages/GoalsPage';
 import ProfilePage from './pages/ProfilePage';
+import AnalyticsPage from './pages/AnalyticsPage';
+import RecommendationsPage from './pages/RecommendationsPage';
+import MessagesPage from './pages/MessagesPage';
 
 const App = () => {
   const { user } = useContext(AuthContext);
@@ -86,6 +89,30 @@ const App = () => {
           element={
             <ProtectedRoute>
               <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <AnalyticsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/recommendations"
+          element={
+            <ProtectedRoute>
+              <RecommendationsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute>
+              <MessagesPage />
             </ProtectedRoute>
           }
         />
